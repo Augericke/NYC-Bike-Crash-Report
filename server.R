@@ -23,6 +23,7 @@ server <- function(input, output) {
       set_zoom <<- 15
       
       bike_collisions <- filter(bike_collisions, zip_code == input$target_zone)
+      
       return(bike_collisions)
       
     }
@@ -84,8 +85,7 @@ server <- function(input, output) {
     hctreemap2( local_bike,
                 group_vars = c("contributing_factor_vehicle_1"),
                 size_var = "number_of_cyclist_injured",
-                color_var = "number_of_cyclist_injured"
-    ) %>% 
+                color_var = "number_of_cyclist_injured") %>% 
       hc_colorAxis(minColor = brewer.pal(3, "Blues")[1],
                    maxColor = brewer.pal(9, "Blues")[9]) %>% 
       hc_tooltip(pointFormat = "<b>{point.name}</b>:<br>
@@ -101,10 +101,12 @@ server <- function(input, output) {
       
       #Dynamic grouping via time selection
       local_bike <- bike_react()
+      
       crash_hc <- summarize(group_by_(local_bike, input$time_report),  
                             injured = sum(as.numeric(number_of_cyclist_injured)),
                             killed =  sum(as.numeric(number_of_cyclist_killed)),
                             incidents = sum(as.numeric(number_of_cyclist_injured)) + sum(as.numeric(number_of_cyclist_killed)))
+      
       highchart() %>% 
         hc_chart(type = "line") %>% 
         hc_xAxis(categories = crash_hc[[input$time_report]]) %>% 
