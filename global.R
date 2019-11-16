@@ -3,16 +3,18 @@
 ##################################
 
 # Load required packages
-packages_required <- c("RSocrata", "shiny", "shinythemes", "zipcode",
+packages_required <- c( "RSocrata", "shiny", "shinythemes", "zipcode",
                        "leaflet","highcharter", "dplyr", "lubridate",
                        "ggplot2", 'revgeo', "treemap","RColorBrewer")
-lapply(packages_required, require, character.only = TRUE)
+
+invisible(lapply(packages_required, library, character.only = TRUE))
+
 
 
 # NYPD Motor Vehicle Collisions - Limited to collisions where a cyclist was injured or killed in the past 365 days
 # https://dev.socrata.com/foundry/data.cityofnewyork.us/qiz3-axqb
 bike_collisions <- read.socrata(  
-  paste("https://data.cityofnewyork.us/resource/qiz3-axqb.json?$where=date between '", Sys.Date()-366 ,"T0:00:01' and '", 
+  paste("https://data.cityofnewyork.us/resource/qiz3-axqb.json?$where=accident_date between '", Sys.Date()-365 ,"T0:00:01' and '", 
         Sys.Date()-1, "T23:59:59' AND (number_of_cyclist_injured>0 OR number_of_cyclist_killed>0)", sep = ""),
   app_token = Sys.getenv("socrata_nyc_token")
 )
@@ -24,9 +26,9 @@ bike_collisions <- read.socrata(
 
 
 # Get time of day (hour, day, month)
-bike_collisions$Hour <- as.integer(gsub(":.*","", bike_collisions$time))
-bike_collisions$Day <- wday(bike_collisions$date, label = T)
-bike_collisions$Month <- month(bike_collisions$date, label = T)
+bike_collisions$Hour <- as.integer(gsub(":.*","", bike_collisions$accident_time))
+bike_collisions$Day <- wday(bike_collisions$accident_date, label = T)
+bike_collisions$Month <- month(bike_collisions$accident_date, label = T)
 
 # Replace missing on street with cross street
 missing_street <- is.na(bike_collisions$on_street_name)

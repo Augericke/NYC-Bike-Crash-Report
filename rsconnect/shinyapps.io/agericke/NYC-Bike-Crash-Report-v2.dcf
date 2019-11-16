@@ -1,0 +1,13 @@
+name: NYC-Bike-Crash-Report-v2
+title: NYC-Bike-Crash-Report-v2
+username:
+account: agericke
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 843148
+bundleId: 2593352
+url: https://agericke.shinyapps.io/NYC-Bike-Crash-Report-v2/
+when: 1573877579.51465
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: README.md
