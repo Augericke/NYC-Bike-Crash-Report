@@ -1,6 +1,6 @@
 # NYC-Bike-Crash-Report
 
-The NYC Bike Crash Report was created with the primary goal of making public data more accessible to local cyclists. The report can be used to better inform a rider’s commute, provided an overview of cycling in the city, or allow for a detailed look at the risks present in one’s own neighborhood.  [Check it out!](http://www.austingericke.com/project/nyc-bike-crash-report)
+The NYC Bike Crash Report was created with the primary goal of making public data more accessible to local cyclists. The report can be used to better inform a rider’s commute, provide an overview of cycling in the city, or allow for a detailed look at the risks present in one’s own neighborhood.  [Check it out!](http://www.austingericke.com/project/nyc-bike-crash-report)
 
 ## Getting Started 
 
